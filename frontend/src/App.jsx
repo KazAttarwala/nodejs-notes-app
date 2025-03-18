@@ -64,7 +64,8 @@ const App = () => {
     setContent("");
   }
 
-  const handleDelete = (id) => {
+  const handleDelete = (event, id) => {
+    event.stopPropagation();
     setNotes(notes.filter((note) => note.id !== id));
   }
 
@@ -93,7 +94,7 @@ const App = () => {
           return (
             <div key={note.id} className="note-item" onClick={() => handleNoteClick(note)}>
               <div className="notes-header">
-                <button onClick={() => handleDelete(note.id)}>x</button>
+                <button onClick={(event) => handleDelete(event, note.id)}>x</button>
               </div>
               <h2>{note.title}</h2>
               <p>{note.content}</p>
